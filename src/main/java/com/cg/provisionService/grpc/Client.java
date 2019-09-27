@@ -18,7 +18,7 @@ public class Client {
 	
 	@PostConstruct
 	private void init() {
-		ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 7000).usePlaintext(true).build();
+		ManagedChannel channel = ManagedChannelBuilder.forAddress("contable.adif-grpc.svc", 6565).usePlaintext(true).build();
 		stub = ProvisionServiceGrpc.newBlockingStub(channel);
 	}
 	
