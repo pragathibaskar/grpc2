@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.lognet.springboot.grpc.GRpcService;
-
+import org.springframework.web.bind.annotation.RequestMapping;
 import com.cg.grpc.contable.ContableServiceGrpc.ContableServiceImplBase;
 import com.cg.grpc.contable.Request;
 import com.cg.grpc.contable.Response;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
+@RequestMapping("adif")
 @GRpcService
 public class ContableServiceImpl extends ContableServiceImplBase{
 	
