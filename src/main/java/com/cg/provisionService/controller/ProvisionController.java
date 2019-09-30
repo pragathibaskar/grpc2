@@ -47,37 +47,37 @@ public class ProvisionController {
 	@Autowired
 	private Db cod;
 	
-//	@Autowired
-//	Client client;
+	@Autowired
+	Client client;
 	
 	@Autowired
     private Tracer tracer;
 	
-//	@CrossOrigin
-//	 @PostMapping("/codigo")
-//		ResponseEntity<Provision> createNew(@RequestBody customProvionTo c)
-//		{
-//		 Date date = new Date(c.getTimestamp());
-//		 Composite obj = new Composite();
-//		 obj.setCodigo(c.getCodigo_sap_expediente());
-//		 obj.setCod_sociedad(c.getCod_sociedad());
-//		 obj.setPeriodo(date);
-//		 Provision pro = new Provision();
-//		 pro.setKey(obj);
-//		 Provision con = svc.createNew(pro);
-//               if(con!=null) {
-//            	   Span span = tracer.buildSpan("Succesfully added a provision entry").start();
-//     			  span.finish();
-//		       Span span2 = tracer.buildSpan("Making a call to Contable microservice").start();
-//			      String msg = client.message(c.getTimestamp(),c.getCodigo_sap_expediente());
-//		       span2.finish();
-//			      Span span1 = tracer.buildSpan("Received the msg from contable microservice: "+msg).start();
-//     			  span1.finish();
-//			    return new ResponseEntity<>(pro, HttpStatus.OK);
-//		 }
-//			else
-//			    return new ResponseEntity<>(null, HttpStatus.CONFLICT);
-//		}
+	@CrossOrigin
+	 @PostMapping("/codigo")
+		ResponseEntity<Provision> createNew(@RequestBody customProvionTo c)
+		{
+		 Date date = new Date(c.getTimestamp());
+		 Composite obj = new Composite();
+		 obj.setCodigo(c.getCodigo_sap_expediente());
+		 obj.setCod_sociedad(c.getCod_sociedad());
+		 obj.setPeriodo(date);
+		 Provision pro = new Provision();
+		 pro.setKey(obj);
+		 Provision con = svc.createNew(pro);
+              if(con!=null) {
+           	   Span span = tracer.buildSpan("Succesfully added a provision entry").start();
+    			  span.finish();
+		       Span span2 = tracer.buildSpan("Making a call to Contable microservice").start();
+			      String msg = client.message(c.getTimestamp(),c.getCodigo_sap_expediente());
+		       span2.finish();
+			      Span span1 = tracer.buildSpan("Received the msg from contable microservice: "+msg).start();
+    			  span1.finish();
+			    return new ResponseEntity<>(pro, HttpStatus.OK);
+		 }
+			else
+			    return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+		}
 	
 	
 	@GetMapping("/getall")
