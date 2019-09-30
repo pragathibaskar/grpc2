@@ -8,11 +8,16 @@ import org.lognet.springboot.grpc.GRpcService;
 import com.cg.grpc.contable.ContableServiceGrpc.ContableServiceImplBase;
 import com.cg.grpc.contable.Request;
 import com.cg.grpc.contable.Response;
-
+import org.springframework.web.bind.annotation.RestController;
 import io.grpc.stub.StreamObserver;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 
+@RestController
 @GRpcService
 public class ContableServiceImpl extends ContableServiceImplBase{
+	
+	public static String message;
 	
 public void creation(Request req,StreamObserver<Response> res) {
 		
@@ -23,10 +28,17 @@ public void creation(Request req,StreamObserver<Response> res) {
 		String msg = "Cierre contable creado para el periodo "+strDate;
 		System.out.println("message "+msg);
 		build.setMsg(msg);
+	        message = msg;
 		Response b = build.build();
 		res.onNext(b);
 		res.onCompleted();
 		
+	}
+	
+	@CrossOrigin
+	@GetMapping("/grpc")
+	String getMsg() {
+		return message;
 	}
 
 }
