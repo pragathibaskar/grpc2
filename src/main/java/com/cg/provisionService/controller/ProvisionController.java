@@ -124,13 +124,13 @@ public class ProvisionController {
 	
 	
 	 @CrossOrigin
-	 @GetMapping("/codigo/autosearch/{sap}")
-	 List<Budget> searchList(@PathVariable("sap") String codigo_sap_expediente)
-	 {
-		 codigo_sap_expediente= codigo_sap_expediente.toLowerCase();
+	 @PostMapping("/codigo/autosearch")
+	 List<Budget> searchList(@RequestBody customProvionTo c){
+		 String codigo_sap_expediente = c.getCodigo_sap_expediente().toLowerCase();
+
 		 codigo_sap_expediente= "%"+codigo_sap_expediente+"%";
 		return db.search(codigo_sap_expediente);
-		 
+
 	 }
 	 
 	 @CrossOrigin
